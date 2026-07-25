@@ -20,7 +20,7 @@
                         <p>10/09/2020</p>
                         <h5>{{ $event->title }}</h5>
                         <p>X Participantes</p>
-                        <a href="#">Saber mais</a>
+                        <a href="/events/{{ $event->id }}">Saber mais</a>
                     </div>
                 </div>
             @endforeach
