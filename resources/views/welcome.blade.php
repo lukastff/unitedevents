@@ -3,5 +3,7 @@
 @section('title', 'United Events')
 
 @section('content')
-    <p>s</p>
+    @foreach($events as $event)
+        <p>{{ $event->title }} - {{ $event->description }}</p>
+    @endforeach
 @endsection
