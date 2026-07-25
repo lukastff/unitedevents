@@ -30,6 +30,24 @@
                 <label for="description">Descrição:</label>
                 <textarea id="description" name="description" placeholder="O'que vai acontecer no evento"></textarea>
             </div>
+            <div>
+                <label for="description">Adicione itens de infraestutura:</label>
+                <div>
+                    <input type="checkbox" name="items[]" value="Cadeiras"/> Cadeirdas
+                </div>
+                <div>
+                    <input type="checkbox" name="items[]" value="Palco"/> Palco
+                </div>
+                <div>
+                    <input type="checkbox" name="items[]" value="Cerveja grátis"/> Cerveja grátis
+                </div>
+                <div>
+                    <input type="checkbox" name="items[]" value="Open Food"/> Open Food
+                </div>
+                <div>
+                    <input type="checkbox" name="items[]" value="Brindes"/> Brindes
+                </div>
+            </div>
             <input type="submit" value="Criar Evento" />
         </form>
     </div>

@@ -42,7 +42,7 @@
         </div>
     </main>
     <footer>
-        <p>HDC Events &copy; 2020</p>
+        <p>United Events &copy; 2020</p>
     </footer>
     <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
