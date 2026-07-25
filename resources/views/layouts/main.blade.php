@@ -11,7 +11,7 @@
     <header>
         <nav class="flex flex-wrap items-center justify-between px-4 py-3 bg-white text-gray-900">
             <div id="navbar" class="hidden w-full lg:flex lg:items-center lg:w-auto">
-                <a href="/" class="text-xl font-semibold text-gray-900 py-2 whitespace-nowrap">
+                <a href="/" class="text-xl mr-[50px] font-semibold text-gray-900 py-2 whitespace-nowrap">
                     United Events
                 </a>
                 <ul class="flex flex-col lg:flex-row list-none gap-1 lg:gap-4 m-0 p-0">
@@ -19,7 +19,7 @@
                         <a href="/" class="block px-3 py-2 text-gray-700 hover:text-gray-900 transition-colors">Eventos</a>
                     </li>
                     <li>
-                        <a href="/" class="block px-3 py-2 text-gray-700 hover:text-gray-900 transition-colors">Criar Eventos</a>
+                        <a href="/events/create" class="block px-3 py-2 text-gray-700 hover:text-gray-900 transition-colors">Criar Eventos</a>
                     </li>
                     <li>
                         <a href="/" class="block px-3 py-2 text-gray-700 hover:text-gray-900 transition-colors">Entrar</a>
@@ -35,5 +35,7 @@
     <footer>
         <p>HDC Events &copy; 2020</p>
     </footer>
+    <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
