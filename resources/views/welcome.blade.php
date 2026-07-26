@@ -17,13 +17,16 @@
                 <div>
                     <img src="/img/events/{{ $event->image }}" alt="{{ $event->title }}" />
                     <div>
-                        <p>10/09/2020</p>
+                        <p>{{ date("d/m/Y", strtotime($event->date)) }}</p>
                         <h5>{{ $event->title }}</h5>
                         <p>X Participantes</p>
                         <a href="/events/{{ $event->id }}">Saber mais</a>
                     </div>
                 </div>
             @endforeach
+            @if(count($events) === 0)
+                <p>Não existe eventos disponíveis</p>
+            @endif
         </div>
     </div>
 @endsection
