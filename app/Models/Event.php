@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Event extends Model
 {
     protected $casts = [
-        "items" => "array"
+        "items" => "array",
+        "date" => "date",
     ];
 
-    protected $dates = ["date"];
+    protected $guarded = [];
 
     public function user() {
         return $this->belongsTo("App\Models\User");
