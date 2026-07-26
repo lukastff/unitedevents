@@ -23,7 +23,7 @@
                     <div>
                         <p>{{ date("d/m/Y", strtotime($event->date)) }}</p>
                         <h5>{{ $event->title }}</h5>
-                        <p>X Participantes</p>
+                        <p>{{ count($event->users) }} Participantes</p>
                         <a href="/events/{{ $event->id }}">Saber mais</a>
                     </div>
                 </div>
