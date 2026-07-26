@@ -21,12 +21,28 @@
                     <li>
                         <a href="/events/create" class="block px-3 py-2 text-gray-700 hover:text-gray-900 transition-colors">Criar Eventos</a>
                     </li>
-                    <li>
-                        <a href="/" class="block px-3 py-2 text-gray-700 hover:text-gray-900 transition-colors">Entrar</a>
-                    </li>
-                    <li>
-                        <a href="/" class="block px-3 py-2 text-gray-700 hover:text-gray-900 transition-colors">Cadastrar</a>
-                    </li>
+                    @auth
+                        <li>
+                            <a href="/dashboard" class="block px-3 py-2 text-gray-700 hover:text-gray-900 transition-colors">Meu perfil</a>
+                        </li>
+                        <li>
+                            <form action="/logout" method="POST">
+                                @csrf
+                                <a href="/logout"
+                                   onclick="event.preventDefault();
+                                   this.closest('form').submit();">Sair</a>
+                            </form>
+                        </li>
+                    @endauth
+
+                    @guest
+                        <li>
+                            <a href="/login" class="block px-3 py-2 text-gray-700 hover:text-gray-900 transition-colors">Entrar</a>
+                        </li>
+                        <li>
+                            <a href="/register" class="block px-3 py-2 text-gray-700 hover:text-gray-900 transition-colors">Cadastrar</a>
+                        </li>
+                    @endguest
                 </ul>
             </div>
         </nav>
