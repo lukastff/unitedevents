@@ -2,22 +2,42 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Event extends Model
 {
-    protected $casts = [
-        "items" => "array",
-        "date" => "date",
+    use HasFactory;
+
+    protected $fillable = [
+        'title',
+        'description',
+        'city',
+        'private',
+        'date',
+        'items',
+        'image',
+        'user_id',
     ];
 
-    protected $guarded = [];
-
-    public function user() {
-        return $this->belongsTo("App\Models\User");
+    protected function casts(): array
+    {
+        return [
+            'items' => 'array',
+            'date' => 'date',
+            'private' => 'boolean',
+        ];
     }
 
-    public function users() {
-        return $this->belongsToMany("App\Models\User");
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class);
     }
 }

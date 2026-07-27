@@ -11,7 +11,7 @@
             Descubra experiências perto de você e confirme presença em segundos.
         </p>
 
-        <form action="/" method="GET" class="mx-auto mt-10 flex max-w-xl items-center gap-2">
+        <form action="{{ route('events.index') }}" method="GET" class="mx-auto mt-10 flex max-w-xl items-center gap-2">
             <label for="search" class="sr-only">Buscar eventos</label>
             <div class="relative flex-1">
                 <ion-icon name="search-outline"
@@ -36,9 +36,9 @@
             @if($search)
                 <div>
                     <h2 class="text-2xl font-semibold tracking-tight text-zinc-900">Resultados para "{{ $search }}"</h2>
-                    <p class="mt-1 text-sm text-zinc-500">{{ count($events) }} evento(s) encontrado(s)</p>
+                    <p class="mt-1 text-sm text-zinc-500">{{ $events->total() }} evento(s) encontrado(s)</p>
                 </div>
-                <a href="/"
+                <a href="{{ route('events.index') }}"
                    class="hidden shrink-0 rounded-full px-4 py-2 text-sm font-medium text-accent transition-colors duration-300 hover:bg-accent/10 sm:block">
                     Limpar busca
                 </a>
@@ -50,11 +50,11 @@
             @endif
         </div>
 
-        @if(count($events) > 0)
+        @if($events->isNotEmpty())
             <div id="cards-container" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 @foreach($events as $event)
                     <article class="group overflow-hidden rounded-2xl border border-zinc-100 bg-white shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-md">
-                        <a href="/events/{{ $event->id }}" class="block aspect-[4/3] overflow-hidden bg-zinc-100">
+                        <a href="{{ route('events.show', $event) }}" class="block aspect-[4/3] overflow-hidden bg-zinc-100">
                             <img src="/img/events/{{ $event->image }}"
                                  alt="{{ $event->title }}"
                                  class="h-full w-full object-cover transition-transform duration-300 ease-out group-hover:scale-105">
@@ -62,11 +62,11 @@
                         <div class="p-5">
                             <div class="flex items-center gap-1.5 text-xs font-medium text-zinc-400">
                                 <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>
-                                <span>{{ date("d/m/Y", strtotime($event->date)) }}</span>
+                                <span>{{ $event->date->format('d/m/Y') }}</span>
                             </div>
 
                             <h3 class="mt-2 truncate text-lg font-semibold tracking-tight text-zinc-900">
-                                <a href="/events/{{ $event->id }}" class="transition-colors duration-300 hover:text-accent">
+                                <a href="{{ route('events.show', $event) }}" class="transition-colors duration-300 hover:text-accent">
                                     {{ $event->title }}
                                 </a>
                             </h3>
@@ -79,9 +79,9 @@
                             <div class="mt-4 flex items-center justify-between border-t border-zinc-100 pt-4">
                                 <div class="flex items-center gap-1.5 text-sm text-zinc-500">
                                     <ion-icon name="people-outline" aria-hidden="true"></ion-icon>
-                                    <span>{{ count($event->users) }} participantes</span>
+                                    <span>{{ $event->users_count }} participantes</span>
                                 </div>
-                                <a href="/events/{{ $event->id }}"
+                                <a href="{{ route('events.show', $event) }}"
                                    class="text-sm font-medium text-accent transition-colors duration-300 hover:text-accent-hover focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:rounded-full">
                                     Ver detalhes
                                 </a>
@@ -89,6 +89,10 @@
                         </div>
                     </article>
                 @endforeach
+            </div>
+
+            <div class="mt-10">
+                {{ $events->links() }}
             </div>
         @else
             <div class="flex flex-col items-center justify-center rounded-2xl border border-dashed border-zinc-200 px-6 py-24 text-center">
@@ -100,7 +104,7 @@
                     <p class="mt-2 max-w-sm text-sm text-zinc-500">
                         Não encontramos eventos para "{{ $search }}". Tente outro termo de busca.
                     </p>
-                    <a href="/"
+                    <a href="{{ route('events.index') }}"
                        class="mt-6 rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-white shadow-sm transition-all duration-300 ease-out hover:bg-accent-hover hover:shadow-md">
                         Ver todos os eventos
                     </a>
@@ -109,7 +113,7 @@
                     <p class="mt-2 max-w-sm text-sm text-zinc-500">
                         Ainda não há eventos cadastrados. Seja o primeiro a criar um.
                     </p>
-                    <a href="/events/create"
+                    <a href="{{ route('events.create') }}"
                        class="mt-6 rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-white shadow-sm transition-all duration-300 ease-out hover:bg-accent-hover hover:shadow-md">
                         Criar evento
                     </a>

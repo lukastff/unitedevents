@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
@@ -67,11 +69,13 @@ class User extends Authenticatable
         ];
     }
 
-    public function events() {
-        return $this->hasMany("App\Models\Event");
+    public function events(): HasMany
+    {
+        return $this->hasMany(Event::class);
     }
 
-    public function eventsAsParticipants() {
-        return $this->belongsToMany("App\Models\Event");
+    public function eventsAsParticipants(): BelongsToMany
+    {
+        return $this->belongsToMany(Event::class);
     }
 }

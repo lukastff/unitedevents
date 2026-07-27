@@ -17,7 +17,7 @@
             <div>
                 <div class="mb-6 flex items-center justify-between">
                     <h2 class="text-2xl font-semibold tracking-tight text-zinc-900">Meus eventos</h2>
-                    <a href="/events/create"
+                    <a href="{{ route('events.create') }}"
                        class="hidden items-center gap-1.5 rounded-full bg-accent px-4 py-2 text-sm font-medium text-white shadow-sm transition-all duration-300 ease-out hover:bg-accent-hover hover:shadow-md sm:inline-flex">
                         <ion-icon name="add-outline" aria-hidden="true"></ion-icon>
                         Criar evento
@@ -40,20 +40,20 @@
                                     <tr class="transition-colors duration-300 hover:bg-zinc-50">
                                         <td scope="row" class="px-5 py-4 text-zinc-400">{{ $loop->index + 1 }}</td>
                                         <td class="px-5 py-4">
-                                            <a href="/events/{{ $event->id }}"
+                                            <a href="{{ route('events.show', $event) }}"
                                                class="font-medium text-zinc-900 transition-colors duration-300 hover:text-accent">
                                                 {{ $event->title }}
                                             </a>
                                         </td>
-                                        <td class="px-5 py-4 text-zinc-500">{{ count($event->users) }}</td>
+                                        <td class="px-5 py-4 text-zinc-500">{{ $event->users_count }}</td>
                                         <td class="px-5 py-4">
                                             <div class="flex items-center justify-end gap-1">
-                                                <a href="/events/edit/{{ $event->id }}"
+                                                <a href="{{ route('events.edit', $event) }}"
                                                    aria-label="Editar {{ $event->title }}"
                                                    class="flex h-9 w-9 items-center justify-center rounded-full text-zinc-500 transition-colors duration-300 hover:bg-zinc-100 hover:text-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent">
                                                     <ion-icon name="create-outline" class="text-lg" aria-hidden="true"></ion-icon>
                                                 </a>
-                                                <form action="/events/{{ $event->id }}" method="POST">
+                                                <form action="{{ route('events.destroy', $event) }}" method="POST">
                                                     @csrf
                                                     @method("DELETE")
                                                     <button type="submit"
@@ -76,7 +76,7 @@
                         </div>
                         <h3 class="mt-6 text-lg font-semibold text-zinc-900">Você ainda não tem eventos</h3>
                         <p class="mt-2 max-w-sm text-sm text-zinc-500">Crie o seu primeiro evento e comece a receber participantes.</p>
-                        <a href="/events/create"
+                        <a href="{{ route('events.create') }}"
                            class="mt-6 rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-white shadow-sm transition-all duration-300 ease-out hover:bg-accent-hover hover:shadow-md">
                             Crie já
                         </a>
@@ -103,14 +103,14 @@
                                     <tr class="transition-colors duration-300 hover:bg-zinc-50">
                                         <td scope="row" class="px-5 py-4 text-zinc-400">{{ $loop->index + 1 }}</td>
                                         <td class="px-5 py-4">
-                                            <a href="/events/{{ $event->id }}"
+                                            <a href="{{ route('events.show', $event) }}"
                                                class="font-medium text-zinc-900 transition-colors duration-300 hover:text-accent">
                                                 {{ $event->title }}
                                             </a>
                                         </td>
-                                        <td class="px-5 py-4 text-zinc-500">{{ count($event->users) }}</td>
+                                        <td class="px-5 py-4 text-zinc-500">{{ $event->users_count }}</td>
                                         <td class="px-5 py-4 text-right">
-                                            <form action="/events/leave/{{ $event->id }}" method="POST" class="inline-flex">
+                                            <form action="{{ route('events.leave', $event) }}" method="POST" class="inline-flex">
                                                 @csrf
                                                 @method("DELETE")
                                                 <button type="submit"
@@ -132,7 +132,7 @@
                         </div>
                         <h3 class="mt-6 text-lg font-semibold text-zinc-900">Você ainda não está participando de nenhum evento</h3>
                         <p class="mt-2 max-w-sm text-sm text-zinc-500">Explore os eventos disponíveis e confirme presença.</p>
-                        <a href="/"
+                        <a href="{{ route('events.index') }}"
                            class="mt-6 rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-white shadow-sm transition-all duration-300 ease-out hover:bg-accent-hover hover:shadow-md">
                             Veja todos os eventos
                         </a>

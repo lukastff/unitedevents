@@ -21,11 +21,11 @@
                     </div>
                     <div class="flex items-center gap-1.5">
                         <ion-icon name="people-outline" class="text-base" aria-hidden="true"></ion-icon>
-                        {{ count($event->users) }} participantes
+                        {{ $event->users_count }} participantes
                     </div>
                     <div class="flex items-center gap-1.5">
                         <ion-icon name="star-outline" class="text-base" aria-hidden="true"></ion-icon>
-                        Organizado por {{ $eventOwner["name"] }}
+                        Organizado por {{ $event->user->name }}
                     </div>
                 </div>
 
@@ -52,12 +52,12 @@
             <div class="lg:col-span-1">
                 <div class="sticky top-24 rounded-2xl border border-zinc-100 p-6 shadow-sm">
                     <p class="text-sm font-medium text-zinc-500">Presença confirmada</p>
-                    <p class="mt-1 text-3xl font-semibold tracking-tight text-zinc-900">{{ count($event->users) }}</p>
+                    <p class="mt-1 text-3xl font-semibold tracking-tight text-zinc-900">{{ $event->users_count }}</p>
 
                     @if(!$hasUserJoined)
-                        <form action="/events/join/{{ $event->id }}" method="POST" class="mt-6">
+                        <form action="{{ route('events.join', $event) }}" method="POST" class="mt-6">
                             @csrf
-                            <a href="/events/join/{{ $event->id }}"
+                            <a href="{{ route('events.join', $event) }}"
                                id="event-submit"
                                onclick="event.preventDefault(); this.closest('form').submit();"
                                class="block w-full rounded-full bg-accent px-6 py-3.5 text-center text-sm font-medium text-white shadow-sm transition-all duration-300 ease-out hover:bg-accent-hover hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
